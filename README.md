@@ -5,13 +5,6 @@
   <img src="public/img/logo.png" alt="Gym - Management System Logo" width="200"/>
   <p><strong>Sistema Integral de Gestión para Gimnasios y Centros Deportivos</strong></p>
 =======
-# Raptor Gym - Management System
-https://raptor-gym.onrender.com/
-
-<div align="center">
-  <img src="public/img/logo.png" alt="Raptor Gym Logo" width="200"/>
-  <p><strong>Sistema Integral de Gestión</strong></p>
->>>>>>> 69fbb6c9ef94c9c6811642dab15179657cc018b0
   
   ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
   ![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
