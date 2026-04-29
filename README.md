@@ -4,7 +4,6 @@
 <div align="center">
   <img src="public/img/logo.png" alt="Gym - Management System Logo" width="200"/>
   <p><strong>Sistema Integral de Gestión para Gimnasios y Centros Deportivos</strong></p>
-=======
   
   ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
   ![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
