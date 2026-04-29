@@ -1,4 +1,5 @@
-<<<<<<< HEAD
+https://gym-management-9kl0.onrender.com/
+
 # 🦖 Gym - Management System
 
 <div align="center">
