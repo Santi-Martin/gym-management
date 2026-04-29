@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gym - Management System — Entrená sin límites</title>
+  <meta
+    name="description"
+    content="Gym - Management System: el gimnasio de alto rendimiento. Membresías flexibles, horarios amplios y la mejor infraestructura para alcanzar tus objetivos." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="/css/landing.css" />
+</head>
+
+<body>
+  <!-- NAV -->
+  <nav class="nav" id="navbar">
+    <div class="nav__container">
+      <a href="#home" class="nav__logo" id="nav-logo-link">
+        <div class="nav__logo-icon">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 32 L14 20 L20 28 L28 10 L34 22 L38 18" stroke="#E31837" stroke-width="3" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <circle cx="20" cy="8" r="4" fill="#E31837" opacity="0.3" />
+            <path d="M6 36 Q20 30 34 36" stroke="#E31837" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </div>
+        <span class="nav__logo-text">GYM <span>MANAGEMENT</span></span>
+      </a>
+      <div class="nav__links" id="nav-links">
+        <a href="#home" class="nav__link" id="nav-home">Inicio</a>
+        <a href="#schedule" class="nav__link" id="nav-schedule">Horarios</a>
+        <a href="#plans" class="nav__link" id="nav-plans">Planes</a>
+        <a href="/app" class="nav__link nav__link--cta" id="nav-access">Acceder</a>
+      </div>
+      <button class="nav__burger" id="nav-burger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero__bg">
+      <div class="hero__bg-grid"></div>
+      <div class="hero__bg-glow"></div>
+    </div>
+    <div class="hero__container">
+      <div class="hero__badge" id="hero-badge">
+        <span class="hero__badge-dot"></span>
+        Abierto Hoy — Ven a entrenar
+      </div>
+      <h1 class="hero__title" id="hero-title">
+        ENTRENÁ<br />
+        <span class="hero__title-accent">SIN LÍMITES</span>
+      </h1>
+      <p class="hero__subtitle" id="hero-subtitle">
+        Gym - Management System te ofrece el espacio, el equipamiento<br class="hero__br" /> y la energía que necesitás para
+        superarte.
+      </p>
+      <div class="hero__actions" id="hero-actions">
+        <a href="#plans" class="btn btn--primary" id="hero-cta-plans">Ver planes</a>
+        <a href="/app" class="btn btn--ghost" id="hero-cta-login">Iniciar sesión</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANS -->
+  <section class="plans" id="plans">
+    <div class="container">
+      <div class="section-header" id="plans-header">
+        <span class="section-tag">Membresías</span>
+        <h2 class="section-title">Elegí tu <span class="accent">plan</span></h2>
+        <p class="section-sub">Sin compromisos largos. Empezá cuando quieras.</p>
+      </div>
+      <div class="plans__grid" id="plans-grid">
+
+        <div class="plan-card reveal" id="plan-month">
+          <div class="plan-card__badge">MÁS ELEGIDO</div>
+          <div class="plan-card__header">
+            <div class="plan-card__icon">🏆</div>
+            <h3 class="plan-card__name">Pase Libre</h3>
+            <p class="plan-card__duration">30 días corridos</p>
+          </div>
+          <div class="plan-card__price">
+            <span class="plan-card__currency">$</span>
+            <span class="plan-card__amount">40.000</span>
+          </div>
+          <ul class="plan-card__features">
+            <li>✓ Acceso ilimitado</li>
+            <li>✓ Todos los horarios</li>
+            <li>✓ 30 días completos</li>
+            <li>✓ QR de acceso único</li>
+          </ul>
+          <a href="/app" class="btn btn--primary plan-card__cta" id="plan-month-cta">Comenzar</a>
+        </div>
+
+        <div class="plan-card reveal" id="plan-3xweek">
+          <div class="plan-card__header">
+            <div class="plan-card__icon">📅</div>
+            <h3 class="plan-card__name">3 Veces por Semana</h3>
+            <p class="plan-card__duration">30 días</p>
+          </div>
+          <div class="plan-card__price">
+            <span class="plan-card__currency">$</span>
+            <span class="plan-card__amount">34.000</span>
+          </div>
+          <ul class="plan-card__features">
+            <li>✓ 3 visitas por semana</li>
+            <li>✓ Todos los horarios</li>
+            <li>✓ 30 días de vigencia</li>
+            <li>✓ QR de acceso único</li>
+          </ul>
+          <a href="/app" class="btn btn--outline plan-card__cta" id="plan-3xweek-cta">Comenzar</a>
+        </div>
+
+        <div class="plan-card reveal" id="plan-15days">
+          <div class="plan-card__header">
+            <div class="plan-card__icon">⚡</div>
+            <h3 class="plan-card__name">15 Días Seguidos</h3>
+            <p class="plan-card__duration">15 días corridos</p>
+          </div>
+          <div class="plan-card__price">
+            <span class="plan-card__currency">$</span>
+            <span class="plan-card__amount">30.000</span>
+          </div>
+          <ul class="plan-card__features">
+            <li>✓ Acceso ilimitado</li>
+            <li>✓ Todos los horarios</li>
+            <li>✓ 15 días completos</li>
+            <li>✓ QR de acceso único</li>
+          </ul>
+          <a href="/app" class="btn btn--outline plan-card__cta" id="plan-15days-cta">Comenzar</a>
+        </div>
+
+        <div class="plan-card reveal" id="plan-week">
+          <div class="plan-card__header">
+            <div class="plan-card__icon">🚀</div>
+            <h3 class="plan-card__name">1 Semana</h3>
+            <p class="plan-card__duration">7 días corridos</p>
+          </div>
+          <div class="plan-card__price">
+            <span class="plan-card__currency">$</span>
+            <span class="plan-card__amount">20.000</span>
+          </div>
+          <ul class="plan-card__features">
+            <li>✓ Acceso ilimitado</li>
+            <li>✓ Todos los horarios</li>
+            <li>✓ 7 días completos</li>
+            <li>✓ QR de acceso único</li>
+          </ul>
+          <a href="/app" class="btn btn--outline plan-card__cta" id="plan-week-cta">Comenzar</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SCHEDULE -->
+  <section class="schedule" id="schedule">
+    <div class="container">
+      <div class="schedule__panel reveal" id="schedule-panel">
+        <div class="schedule__panel-header">
+          <div class="schedule__panel-title-group">
+            <span class="schedule__panel-icon">🕐</span>
+            <h2 class="schedule__panel-title">HORARIOS DE ATENCIÓN</h2>
+          </div>
+          <span class="schedule__status" id="schedule-status"></span>
+        </div>
+        <div class="schedule__rows">
+          <div class="schedule__row">
+            <span class="schedule__row-day">Lunes a Viernes</span>
+            <span class="schedule__row-sep"></span>
+            <span class="schedule__row-time">07:00 — 00:00</span>
+          </div>
+          <div class="schedule__row">
+            <span class="schedule__row-day">Sábados</span>
+            <span class="schedule__row-sep"></span>
+            <span class="schedule__row-time">09:00 — 21:00</span>
+          </div>
+          <div class="schedule__row">
+            <span class="schedule__row-day">Domingos</span>
+            <span class="schedule__row-sep"></span>
+            <span class="schedule__row-time">16:00 — 20:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer__top">
+
+        <!-- Columna 1: Navegacion -->
+        <div class="footer__links-group">
+          <h4>Navegaci&oacute;n</h4>
+          <a href="#home" id="footer-home-link">Inicio</a>
+          <a href="#plans" id="footer-plans-link">Planes</a>
+          <a href="#schedule" id="footer-schedule-link">Horarios</a>
+          <a href="/app" id="footer-access-link">Acceder</a>
+        </div>
+
+        <!-- Columna 2: Logo y tagline (centro) -->
+        <div class="footer__brand">
+          <div class="nav__logo">
+            <div class="nav__logo-icon">
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 32 L14 20 L20 28 L28 10 L34 22 L38 18" stroke="#E31837" stroke-width="3"
+                  stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="20" cy="8" r="4" fill="#E31837" opacity="0.3" />
+                <path d="M6 36 Q20 30 34 36" stroke="#E31837" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </div>
+            <span class="nav__logo-text">GYM <span>- MGMT SYSTEM</span></span>
+          </div>
+          <p class="footer__tagline">Donde los l&iacute;mites se rompen.</p>
+        </div>
+
+        <!-- Columna 3: Horarios -->
+        <div class="footer__links-group">
+          <h4>Horarios</h4>
+          <span>Lun&ndash;Vie: 07:00 &ndash; 00:00</span>
+          <span>S&aacute;bados: 09:00 &ndash; 21:00</span>
+          <span>Domingos: 16:00 &ndash; 20:00</span>
+        </div>
+
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Gym - Management System. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+  <script src="/js/landing.js"></script>
+</body>
+
+</html>

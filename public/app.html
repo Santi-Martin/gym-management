@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gym - Management System — Panel</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+
+<body class="app-body">
+
+  <!-- LOGIN SCREEN -->
+  <div id="login-screen" class="login-screen">
+    <div class="login-bg">
+      <div class="login-bg__grid"></div>
+      <div class="login-bg__glow"></div>
+    </div>
+    <div class="login-card">
+      <a href="/" class="login-back" id="login-back-btn">← Volver al inicio</a>
+      <div class="login-logo">
+        <div class="logo-icon-wrap">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="32" height="32">
+            <path d="M8 32 L14 20 L20 28 L28 10 L34 22 L38 18" stroke="#E31837" stroke-width="3" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <circle cx="20" cy="8" r="4" fill="#E31837" opacity="0.3" />
+          </svg>
+        </div>
+        <div>
+          <div class="login-logo__text">GYM <span>- MGMT SYSTEM</span></div>
+          <div class="login-logo__sub">Portal de acceso</div>
+        </div>
+      </div>
+      <h2 class="login-title">Iniciar sesión</h2>
+      <div id="login-error" class="alert alert--error" style="display:none;"></div>
+      <form id="login-form" class="login-form">
+        <div class="form-group">
+          <label for="login-email" class="form-label">Email</label>
+          <input type="email" id="login-email" class="form-input" placeholder="tu@email.com" required
+            autocomplete="email" />
+        </div>
+        <div class="form-group">
+          <label for="login-password" class="form-label">Contraseña</label>
+          <div class="input-wrapper">
+            <input type="password" id="login-password" class="form-input" placeholder="••••••••" required
+              autocomplete="current-password" />
+            <button type="button" class="input-eye" id="toggle-password" aria-label="Mostrar contraseña">
+              <span class="eye-icon">👁</span>
+            </button>
+          </div>
+        </div>
+        <button type="submit" class="btn btn--primary btn--full" id="login-submit-btn">
+          <span id="login-btn-text">Ingresar</span>
+          <div class="btn-spinner" id="login-spinner" style="display:none;"></div>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- APP SHELL -->
+  <div id="app-shell" class="app-shell" style="display:none;">
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar__header">
+        <div class="sidebar__logo">
+          <div class="logo-icon-wrap logo-icon-wrap--sm">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="22" height="22">
+              <path d="M8 32 L14 20 L20 28 L28 10 L34 22 L38 18" stroke="#E31837" stroke-width="3"
+                stroke-linecap="round" stroke-linejoin="round" />
+              <circle cx="20" cy="8" r="4" fill="#E31837" opacity="0.3" />
+            </svg>
+          </div>
+          <span class="sidebar__logo-text">GYM <span>- MGMT SYSTEM</span></span>
+        </div>
+        <button class="sidebar__close" id="sidebar-close" aria-label="Cerrar menú">✕</button>
+      </div>
+
+      <!-- User info -->
+      <div class="sidebar__user" id="sidebar-user">
+        <div class="sidebar__avatar" id="sidebar-avatar">?</div>
+        <div class="sidebar__user-info">
+          <div class="sidebar__user-name" id="sidebar-user-name">Cargando...</div>
+          <div class="sidebar__user-role" id="sidebar-user-role">—</div>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="sidebar__nav" id="sidebar-nav">
+        <!-- Populated by JS -->
+      </nav>
+
+      <div class="sidebar__footer">
+        <button class="sidebar__logout" id="logout-btn">
+          <span>⬡</span> Cerrar sesión
+        </button>
+      </div>
+    </aside>
+
+    <!-- OVERLAY for mobile -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- MAIN CONTENT -->
+    <div class="app-main">
+      <!-- TOP BAR -->
+      <header class="topbar" id="topbar">
+        <button class="topbar__burger" id="topbar-burger" aria-label="Abrir menú">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="topbar__title" id="topbar-title">Panel</div>
+        <div class="topbar__user">
+          <div class="topbar__avatar" id="topbar-avatar">?</div>
+        </div>
+      </header>
+
+      <!-- VIEW CONTAINER -->
+      <main class="view-container" id="view-container">
+        <div class="loading-state" id="view-loading">
+          <div class="spinner"></div>
+          <p>Cargando...</p>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- GLOBAL MODAL -->
+  <div id="global-modal" class="modal-overlay" style="display:none;">
+    <div class="modal" id="modal-box">
+      <div class="modal__header">
+        <h3 class="modal__title" id="modal-title">Título</h3>
+        <button class="modal__close" id="modal-close">✕</button>
+      </div>
+      <div class="modal__body" id="modal-body"></div>
+      <div class="modal__footer" id="modal-footer"></div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast-container" class="toast-container"></div>
+  <script src="https://cdn.jsdelivr.net/npm/html5-qrcode@2.3.8/html5-qrcode.min.js" type="text/javascript"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/components/modal.js"></script>
+  <script src="/js/views/dashboard.js"></script>
+  <script src="/js/views/my-qr.js"></script>
+  <script src="/js/views/my-membership.js"></script>
+  <script src="/js/views/my-account.js"></script>
+  <script src="/js/views/register-user.js"></script>
+  <script src="/js/views/scan-entry.js"></script>
+  <script src="/js/views/manage-users.js"></script>
+  <script src="/js/views/sales.js"></script>
+  <script src="/js/views/create-employee.js"></script>
+  <script src="/js/views/reports.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+
+</html>

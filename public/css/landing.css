@@ -1,0 +1,1184 @@
+/* ========================================
+   GYM - MANAGEMENT SYSTEM — LANDING CSS
+   ======================================== */
+
+/* ── VARIABLES GLOBALES (Design Tokens) ──────────────────────────────────
+   Centralizamos colores, tipografías, radios y transiciones en :root
+   para poder reutilizarlos en todo el archivo con var(--nombre).        */
+:root {
+  /* Paleta de rojos */
+  --red: #E31837;
+  /* Rojo principal de la marca */
+  --red-dark: #B5102A;
+  /* Rojo más oscuro para estados presionados */
+  --red-light: #FF2244;
+  /* Rojo más claro para hovers */
+  --red-glow: rgba(227, 24, 55, 0.3);
+  /* Sombra difusa roja (usada en brillos) */
+
+  /* Paleta de negros y oscuros */
+  --black: #0A0A0A;
+  /* Negro absoluto del fondo principal */
+  --black-2: #111111;
+  /* Negro ligeramente más claro (secciones alternas) */
+  --dark: #151515;
+  --dark-2: #1A1A1A;
+  --dark-3: #222222;
+  --dark-4: #555555;
+
+  /* Bordes */
+  --border: rgba(255, 255, 255, 0.07);
+  /* Borde neutro muy sutil (casi invisible) */
+  --border-red: rgba(227, 24, 55, 0.25);
+  /* Borde rojo semi-transparente */
+
+  /* Textos */
+  --text: #F0F0F0;
+  /* Texto principal claro */
+  --text-muted: #cccccc;
+  /* Texto secundario atenuado */
+  --text-dim: #cccccc;
+  /* Texto terciario (pies, etiquetas) */
+  --white: #FFFFFF;
+
+  /* Tipografías */
+  --font-head: 'Outfit', sans-serif;
+  /* Fuente para títulos y elementos grandes */
+  --font-body: 'Inter', sans-serif;
+  /* Fuente para cuerpo de texto */
+
+  /* Radios de borde */
+  --radius: 12px;
+  /* Radio estándar para botones y elementos pequeños */
+  --radius-lg: 20px;
+  /* Radio grande para tarjetas y paneles */
+
+  /* Sombras predefinidas */
+  --shadow-red: 0 0 40px rgba(227, 24, 55, 0.2);
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
+
+  /* Transición global: suave con aceleración natural */
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── RESET BASE ──────────────────────────────────────────────────────────
+   Eliminamos márgenes y paddings predeterminados del navegador,
+   y usamos box-sizing: border-box para que el padding no agrande el elemento. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Desplazamiento suave al hacer clic en anclas (#section) */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--black);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  /* Evita scroll horizontal no deseado */
+}
+
+/* Quitamos subrayado a todos los enlaces y heredamos el color del padre */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Las imágenes no se salen de su contenedor */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Contenedor centrado con ancho máximo para mantener el contenido ordenado */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Clase utilitaria para colorear texto en rojo de marca */
+.accent {
+  color: var(--red);
+}
+
+
+/* ===============================
+   BOTONES
+   =============================== */
+
+/* Base compartida por todos los botones */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 32px;
+  border-radius: var(--radius);
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  transition: var(--transition);
+  cursor: pointer;
+  border: none;
+  white-space: nowrap;
+  /* Evita que el texto del botón se parta en dos líneas */
+}
+
+/* Botón principal: fondo rojo sólido con halo de luz */
+.btn--primary {
+  background: var(--red);
+  color: white;
+  box-shadow: 0 4px 20px var(--red-glow);
+}
+
+.btn--primary:hover {
+  background: var(--red-light);
+  transform: translateY(-2px);
+  /* Efecto de elevación al pasar el mouse */
+  box-shadow: 0 8px 30px rgba(227, 24, 55, 0.5);
+}
+
+/* Botón fantasma: sin fondo, con borde neutro */
+.btn--ghost {
+  background: rgba(88, 88, 88, 0.664);
+  color: var(--text);
+  border: 1.5px solid var(--border);
+}
+
+.btn--ghost:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+}
+
+/* Botón contorno rojo: transparente con borde de color marca */
+.btn--outline {
+  background: transparent;
+  color: var(--red);
+  border: 1.5px solid var(--border-red);
+}
+
+.btn--outline:hover {
+  background: rgba(227, 24, 55, 0.08);
+  border-color: var(--red);
+  transform: translateY(-2px);
+}
+
+
+/* ===============================
+   NAVBAR
+   =============================== */
+
+/* Barra de navegación fija en la parte superior, encima de todo */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 18px 0;
+  transition: var(--transition);
+}
+
+/* Cuando el usuario hace scroll, la nav gana fondo oscuro con blur */
+.nav.scrolled {
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(12px);
+  /* Efecto cristal esmerilado */
+  border-bottom: 1px solid var(--border);
+  padding: 12px 0;
+  /* Se achica un poco al bajar */
+}
+
+/* Layout interno de la nav: logo a la izquierda, links a la derecha */
+.nav__container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Contenedor del logo (ícono + texto) */
+.nav__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Cuadro que contiene el SVG del logo */
+.nav__logo-icon {
+  width: 36px;
+  height: 36px;
+  background: rgba(227, 24, 55, 0.1);
+  border: 1px solid var(--border-red);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+}
+
+/* El SVG ocupa todo el cuadro del ícono */
+.nav__logo-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Texto del logo: GYM en blanco, MGMT SYSTEM en rojo */
+.nav__logo-text {
+  font-family: var(--font-head);
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--red);
+}
+
+.nav__logo-text span {
+  color: var(--white);
+}
+
+/* Lista de links de navegación en desktop */
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Cada link de la nav: redondeado con hover sutil */
+.nav__link {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: var(--transition);
+}
+
+.nav__link:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Link de llamada a la acción (Acceder): fondo rojo */
+.nav__link--cta {
+  background: var(--red);
+  color: white !important;
+  margin-left: 8px;
+  box-shadow: 0 0 20px var(--red-glow);
+}
+
+.nav__link--cta:hover {
+  background: var(--red-light);
+  transform: translateY(-1px);
+}
+
+/* Ícono hamburguesa: solo visible en móvil (se muestra con media query) */
+.nav__burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+/* Cada línea del ícono hamburguesa */
+.nav__burger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: var(--transition);
+}
+
+/* Animación de cruz al abrir el menú móvil */
+.nav__burger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav__burger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav__burger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+
+/* ===============================
+   HERO
+   =============================== */
+
+/* Sección principal: ocupa toda la pantalla, centrado verticalmente */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Fondo del hero: contiene los elementos decorativos (grid y glow) */
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  /* Cubre todo el padre */
+  z-index: 0;
+}
+
+/* Cuadrícula decorativa de fondo: líneas muy sutiles */
+.hero__bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  /* Tamaño de cada celda del grid */
+}
+
+/* Resplandor rojizo circular centrado detrás del título */
+.hero__bg-glow {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(227, 24, 55, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+  /* No intercepta clics */
+}
+
+/* Contenedor del contenido del hero (sobre el fondo) */
+.hero__container {
+  position: relative;
+  z-index: 1;
+  /* Asegura que esté por encima del fondo decorativo */
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 120px 0 80px;
+  text-align: center;
+}
+
+/* Pastilla superior con animación de entrada desde arriba */
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(30, 30, 30, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(74, 222, 128, 0.3);
+  border-radius: 100px;
+  padding: 8px 20px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #4ade80;
+  margin-bottom: 28px;
+  letter-spacing: 0.5px;
+  animation: fadeInDown 0.6s ease both;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Punto pulsante dentro de la pastilla (indica estado "activo") */
+.hero__badge-dot {
+  width: 8px;
+  height: 8px;
+  background: #4ade80;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #4ade80;
+  animation: pulse-badge-green 2s infinite;
+}
+
+/* Animación de pulso del punto verde */
+@keyframes pulse-badge-green {
+
+  0%,
+  100% {
+    box-shadow: 0 0 4px #4ade80;
+  }
+
+  50% {
+    box-shadow: 0 0 12px #4ade80, 0 0 20px rgba(74, 222, 128, 0.5);
+  }
+}
+
+/* Título principal gigante con tamaño fluido (clamp adapta entre 3.5rem y 8rem) */
+.hero__title {
+  font-family: var(--font-head);
+  font-size: clamp(3.5rem, 10vw, 8rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -2px;
+  color: var(--red);
+  margin-bottom: 12px;
+  animation: fadeInUp 0.7s ease 0.1s both;
+}
+
+/* Parte del título en rojo con halo luminoso */
+.hero__title-accent {
+  color: var(--white);
+  text-shadow: 0 0 60px rgba(227, 24, 55, 0.4);
+}
+
+/* Subtítulo descriptivo debajo del título */
+.hero__subtitle {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--text-muted);
+  margin-bottom: 40px;
+  line-height: 1.7;
+  animation: fadeInUp 0.7s ease 0.2s both;
+}
+
+/* Salto de línea solo visible en pantallas grandes */
+.hero__br {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .hero__br {
+    display: inline;
+  }
+}
+
+/* Fila de botones de acción debajo del subtítulo */
+.hero__actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 64px;
+  animation: fadeInUp 0.7s ease 0.3s both;
+}
+
+/* Fila de estadísticas (ej: cantidad de socios, años, etc.) */
+.hero__stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  animation: fadeInUp 0.7s ease 0.4s both;
+}
+
+/* Cada estadística individual centrada */
+.hero__stat {
+  text-align: center;
+}
+
+/* Número grande de cada stat */
+.hero__stat-num {
+  display: block;
+  font-family: var(--font-head);
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1;
+}
+
+
+/* Tarjeta "Mas Elegido": borde rojo permanente para que destaque del resto */
+#plan-month {
+  border-color: var(--red);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6),
+    0 0 24px rgba(227, 24, 55, 0.22),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+}
+
+/* Etiqueta debajo del número */
+.hero__stat-label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+
+/* Separador vertical entre estadísticas */
+.hero__stat-divider {
+  width: 1px;
+  height: 40px;
+  background: var(--border);
+}
+
+/* Indicador de scroll animado en la parte inferior del hero */
+.hero__scroll-indicator {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  animation: bounceDown 2s infinite;
+  z-index: 1;
+}
+
+/* Flecha pequeña del indicador de scroll */
+.hero__scroll-arrow {
+  font-size: 1.2rem;
+  color: var(--red);
+}
+
+/* Animación que hace rebotar el indicador de scroll hacia abajo */
+@keyframes bounceDown {
+
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(6px);
+  }
+}
+
+
+/* ===============================
+   ELEMENTOS COMUNES DE SECCIÓN
+   =============================== */
+
+/* Cabecera de sección: centrada con margen inferior generoso */
+.section-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+
+/* Tarjeta "Mas Elegido": borde rojo permanente para que destaque del resto */
+#plan-month {
+  border-color: var(--red);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6),
+    0 0 24px rgba(227, 24, 55, 0.22),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+}
+
+/* Etiqueta pequeña sobre el título (ej: "Membresías", "Horarios") */
+.section-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--red);
+  margin-bottom: 16px;
+}
+
+/* Título grande de cada sección con tamaño fluido */
+.section-title {
+  font-family: var(--font-head);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+
+/* Subtítulo descriptivo de la sección, con ancho máximo para legibilidad */
+.section-sub {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Animación de aparición: los elementos empiezan ocultos y bajan desde arriba.
+   El JS agrega la clase .visible cuando el elemento entra en pantalla. */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ===============================
+   SCHEDULE (Horarios)
+   =============================== */
+
+/* Sección de horarios: fondo ligeramente más claro que el body */
+.schedule {
+  padding: 72px 0;
+  background: var(--black-2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Panel central donde se muestran todos los horarios.
+   Glassmorphism: fondo gris semitransparente + blur. */
+.schedule__panel {
+  background: var(--dark-3);
+  backdrop-filter: blur(14px);
+  /* Desenfoca lo que hay detrás del panel */
+  -webkit-backdrop-filter: blur(14px);
+  /* Soporte para Safari */
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-lg);
+  padding: 40px 48px;
+  max-width: 680px;
+  /* Ancho máximo para mantener el panel compacto */
+  margin: 0 auto;
+  /* Centrado horizontal */
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  /* Borde superior interno muy sutil */
+}
+
+/* Línea roja decorativa de 2px en el borde superior del panel */
+.schedule__panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--red);
+  opacity: 0.5;
+}
+
+/* Fila superior del panel: título a la izquierda, badge de estado a la derecha */
+.schedule__panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  /* En pantallas pequeñas se apila verticalmente */
+  gap: 12px;
+}
+
+/* Grupo que contiene el ícono de reloj + el título */
+.schedule__panel-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Ícono emoji de reloj */
+.schedule__panel-icon {
+  font-size: 1.5rem;
+}
+
+/* Título "HORARIOS DE ATENCIÓN" en mayúsculas y espaciado amplio */
+.schedule__panel-title {
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--white);
+  text-transform: uppercase;
+}
+
+/* Badge de estado (Abierto ahora / Cerrado): base compartida */
+.schedule__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 16px;
+  border-radius: 100px;
+  /* Completamente redondeado (tipo pastilla) */
+  font-family: var(--font-head);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  transition: var(--transition);
+}
+
+/* Punto circular de color dentro del badge (definido con ::before para no usar HTML extra) */
+.schedule__status::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  /* El punto no se encoge si el texto es largo */
+}
+
+/* Variante "Abierto ahora": fondo y borde verde semitransparente */
+.schedule__status--open {
+  background: rgba(34, 197, 94, 0.15);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  color: #4ade80;
+}
+
+/* Punto verde con animación de pulso (parece "en vivo") */
+.schedule__status--open::before {
+  background: #4ade80;
+  box-shadow: 0 0 6px #4ade80;
+  animation: pulse-green 2s infinite;
+}
+
+/* Variante "Cerrado": fondo y borde rojo semitransparente */
+.schedule__status--closed {
+  background: rgba(227, 24, 55, 0.12);
+  border: 1px solid rgba(227, 24, 55, 0.35);
+  color: var(--red);
+}
+
+/* Punto rojo estático para el estado cerrado */
+.schedule__status--closed::before {
+  background: var(--red);
+}
+
+/* Animación del punto verde: brillo pulsante que simula actividad */
+@keyframes pulse-green {
+
+  0%,
+  100% {
+    box-shadow: 0 0 4px #4ade80;
+  }
+
+  50% {
+    box-shadow: 0 0 10px #4ade80, 0 0 18px rgba(74, 222, 128, 0.4);
+  }
+}
+
+/* Contenedor de las filas de horarios, apiladas verticalmente */
+.schedule__rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Cada fila de horario: día a la izquierda, separador, hora a la derecha */
+.schedule__row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  /* Divisor entre filas */
+}
+
+/* La última fila no tiene línea divisoria ni padding inferior */
+.schedule__row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* La primera fila no tiene padding superior (está pegada al encabezado) */
+.schedule__row:first-child {
+  padding-top: 0;
+}
+
+/* Nombre del día (ej: "Lunes a Viernes") con ancho mínimo para alinear */
+.schedule__row-day {
+  font-family: var(--font-head);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  min-width: 160px;
+  /* Garantiza que los horarios queden alineados a la derecha */
+}
+
+/* Línea separadora horizontal que crece para llenar el espacio disponible */
+.schedule__row-sep {
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Horario en blanco puro, sin cortes de línea */
+.schedule__row-time {
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--white);
+  white-space: nowrap;
+}
+
+
+/* ===============================
+   PLANS (Planes / Membresías)
+   =============================== */
+
+/* Sección de planes con espaciado vertical amplio */
+.plans {
+  padding: 100px 0;
+}
+
+/* Grid responsivo de tarjetas: se adapta al ancho disponible automáticamente */
+.plans__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  align-items: start;
+  /* Las tarjetas se alinean desde arriba (no se estiran) */
+}
+
+/* Tarjeta de plan: glassmorphism con fondo gris semitransparente */
+.plan-card {
+  background: var(--dark-3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  padding: 36px 28px;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+}
+
+/* Hover de la tarjeta: se eleva, borde rojo y halo luminoso */
+.plan-card:hover {
+  border-color: var(--red);
+  transform: translateY(-8px);
+  background: rgba(51, 51, 51, 0.8);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8),
+    0 0 20px rgba(227, 24, 55, 0.15);
+}
+
+
+/* Tarjeta "Mas Elegido": borde rojo permanente para que destaque del resto */
+#plan-month {
+  border-color: var(--red);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6),
+    0 0 24px rgba(227, 24, 55, 0.22),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+}
+
+/* Etiqueta "MÁS ELEGIDO" u otras, cuelga del borde superior de la tarjeta */
+.plan-card__badge {
+  position: absolute;
+  top: -1px;
+  right: 20px;
+  background: var(--red);
+  color: white;
+  font-family: var(--font-head);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  padding: 6px 14px;
+  border-radius: 0 0 10px 10px;
+  /* Redondeado solo abajo, pegado al borde superior */
+}
+
+/* Encabezado de la tarjeta: ícono, nombre del plan y duración */
+.plan-card__header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+/* Ícono emoji grande de cada plan */
+.plan-card__icon {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+}
+
+/* Nombre del plan en grande */
+.plan-card__name {
+  font-family: var(--font-head);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+/* Duración del plan en texto pequeño y atenuado */
+.plan-card__duration {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+}
+
+/* Bloque de precio: centrado con separador inferior */
+.plan-card__price {
+  text-align: center;
+  margin-bottom: 28px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Símbolo de moneda en rojo, alineado arriba al lado del número */
+.plan-card__currency {
+  font-family: var(--font-head);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--red);
+  vertical-align: super;
+}
+
+/* Número del precio en gran tamaño y peso máximo */
+.plan-card__amount {
+  font-family: var(--font-head);
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1;
+}
+
+/* Lista de características incluidas en el plan */
+.plan-card__features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 28px;
+  flex: 1;
+  /* Empuja el botón CTA al fondo de la tarjeta */
+}
+
+/* Cada ítem de la lista */
+.plan-card__features li {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Desactiva cualquier marcador de lista predeterminado */
+.plan-card__features li::before {
+  content: none;
+}
+
+/* Botón de llamada a la acción: ocupa todo el ancho y está centrado */
+.plan-card__cta {
+  width: 100%;
+  text-align: center;
+}
+
+
+/* ===============================
+   FOOTER
+   =============================== */
+
+/* Pie de página con fondo oscuro y separador superior */
+.footer {
+  background: var(--black-2);
+  border-top: 1px solid var(--border);
+  padding: 60px 0 32px;
+}
+
+/* Grid del footer: 3 columnas iguales, el logo queda centrado */
+.footer__top {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+
+/* Columna central del footer: logo y tagline alineados al centro */
+.footer__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Los links del departamento de horarios se alinean a la derecha */
+.footer__links-group:last-child {
+  text-align: right;
+}
+
+/* Texto descriptivo debajo del logo en el footer */
+.footer__tagline {
+  margin-top: 16px;
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+/* Título de cada columna de links del footer */
+.footer__links-group h4 {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+/* Links y textos informativos dentro de cada columna */
+.footer__links-group a,
+.footer__links-group span {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+  transition: var(--transition);
+}
+
+/* Los links se ponen rojos al pasar el mouse */
+.footer__links-group a:hover {
+  color: var(--red);
+}
+
+/* Barra inferior del footer: copyright centrado */
+.footer__bottom {
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--dark-4);
+}
+
+
+/* ===============================
+   ANIMACIONES GLOBALES
+   =============================== */
+
+/* Entrada desde arriba: usado en el badge del hero */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Entrada desde abajo: usada en títulos, subtítulos y estadísticas del hero */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ===============================
+   RESPONSIVE (Adaptación móvil)
+   =============================== */
+
+/* Pantallas medianas (tablets, hasta 900px) */
+@media (max-width: 900px) {
+
+  /* El panel de horarios reduce su padding interno */
+  .schedule__panel {
+    padding: 28px 24px;
+  }
+
+  /* El nombre del día tiene menos ancho mínimo para caber en pantallas angostas */
+  .schedule__row-day {
+    min-width: 130px;
+  }
+
+  /* El footer pasa a una sola columna centrada */
+  .footer__top {
+    grid-template-columns: 1fr;
+  }
+
+  .footer__top {
+    text-align: center;
+  }
+
+  .footer__brand {
+    align-items: center;
+  }
+
+  .footer__links-group:last-child {
+    text-align: center;
+  }
+}
+
+/* Pantallas pequeñas (móviles, hasta 640px) */
+@media (max-width: 640px) {
+
+  /* Los links del nav se ocultan por defecto en móvil */
+  .nav__links {
+    display: none;
+    flex-direction: column;
+  }
+
+  /* Cuando el menú está abierto, los links se muestran como overlay de pantalla completa */
+  .nav__links.open {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(10, 10, 10, 0.98);
+    backdrop-filter: blur(20px);
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    z-index: 999;
+  }
+
+  /* Los links dentro del menú abierto se agrandan para ser más fáciles de tocar */
+  .nav__links.open .nav__link {
+    font-size: 1.5rem;
+    font-family: var(--font-head);
+    padding: 12px 24px;
+  }
+
+  /* El botón hamburguesa se muestra encima del overlay */
+  .nav__burger {
+    display: flex;
+    z-index: 1001;
+    position: relative;
+  }
+
+  /* Ajustes del hero en móvil */
+  .hero__title {
+    letter-spacing: -1px;
+  }
+
+  .hero__stats {
+    gap: 20px;
+  }
+
+  .hero__stat-divider {
+    display: none;
+  }
+
+  /* Los separadores verticales entre stats se ocultan */
+
+  /* Los planes se apilan en una sola columna */
+  .plans__grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* El footer se apila en una columna, todo centrado */
+  .footer__top {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .footer__brand {
+    align-items: center;
+  }
+}
