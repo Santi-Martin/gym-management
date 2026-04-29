@@ -99,5 +99,4 @@ Este proyecto es de carácter **privado y personal**.
 ---
 
   Desarrollado por Santiago Martin
->>>>>>> 69fbb6c9ef94c9c6811642dab15179657cc018b0
 </div>
